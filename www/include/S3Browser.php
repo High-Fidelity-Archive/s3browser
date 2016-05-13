@@ -71,11 +71,7 @@ class S3Browser {
     
     // get from cache if valid
     if ($this->cacheDuration && file_exists($cacheFile)) {
-      $cacheAge = time() - filectime($cacheFile);
-      
-      if ($cacheAge < $this->cacheDuration) {
-        $contents = unserialize(file_get_contents($cacheFile));
-      }
+      $contents = unserialize(file_get_contents($cacheFile));
     }
     
     // hit s3 if we didn't have anything cached
@@ -89,9 +85,9 @@ class S3Browser {
       }
       
       // save if caching is enabled
-      if ($this->cacheDuration) {
-        file_put_contents($cacheFile, serialize($contents));
-      }
+      //if ($this->cacheDuration) {
+      //  file_put_contents($cacheFile, serialize($contents));
+      //}
     }
     
     return $contents;
